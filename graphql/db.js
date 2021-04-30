@@ -1,8 +1,8 @@
 import axios from "axios";
 const BASE_URL = "https://yts.mx/api/v2/";
-const LIST_MOVIES_URL = `${BASE_URL}list_movies.json`;
-const MOVIE_DETAILS_URL = `${BASE_URL}movie_details.json`;
-const MOVIE_SUGGESTIONS_URL = `${BASE_URL}movie_suggestions.json`;
+const LIST_MOVIES_URL = `${BASE_URL}list_movies.jsonp`;
+const MOVIE_DETAILS_URL = `${BASE_URL}movie_details.jsonp`;
+const MOVIE_SUGGESTIONS_URL = `${BASE_URL}movie_suggestions.jsonp`;
 
 export const getMovies = async (limit, rating) => {
   const {
@@ -15,6 +15,7 @@ export const getMovies = async (limit, rating) => {
       minimum_rating: rating,
     },
   });
+
   return movies;
 };
 
@@ -41,5 +42,6 @@ export const getSuggestions = async (id) => {
       movie_id: id,
     },
   });
+  console.log(movies);
   return movies;
 };
