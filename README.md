@@ -60,7 +60,7 @@ yarn add babel-node babel-cli babel-preset-env babel-preset-stage-3
 ```graphql
 //리턴 타입을 설정할 수 있다.
 type Movie {
-   id :Int!
+   id: Int!
    ...
 }
 
@@ -72,7 +72,7 @@ type Query {
  movie(id:Int!) : Movie
  
  // 다수의 결과를 받아오려면 "쿼리명: [리턴타입]"으로 지정한다.
- movies : [Moive]!
+ movies: [Moive]!
 }
 
 type Mutation{
