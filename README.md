@@ -54,8 +54,8 @@ yarn add babel-node babel-cli babel-preset-env babel-preset-stage-3
 
 ## schema
 사용자에게 보내거나 사용자로부터 받을 data에 대한 설명
-Query : DB로 부터 정보를 얻는것
-Mutation : 정보를 DB로 보내는것
+- Query : DB로 부터 정보를 얻는것
+- Mutation : 정보를 DB로 보내는것
 
 ```
 type Query {
