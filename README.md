@@ -128,7 +128,7 @@ type Movie {
 type Query {
  name: String!
  movie(id:Int!) : Movie
- movies : [Moive]!
+ movies: [Moive]!
 }
 
 ```
@@ -150,7 +150,7 @@ const resolvers = {
           });
           return movie;
         },
-        movies : () => {..}
+        movies : () => {..},
         movieData : () => {} // error : schema에 정의되지 않음
     }
 }
