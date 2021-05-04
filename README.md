@@ -57,7 +57,7 @@ yarn add babel-node babel-cli babel-preset-env babel-preset-stage-3
 - Query : DB로 부터 정보를 얻는것
 - Mutation : 정보를 DB로 보내는것
 
-```
+```graphql
 //리턴 타입을 설정할 수 있다.
 type Movie {
    id :Int!
@@ -86,7 +86,7 @@ type Mutation{
 - schema에서 설명한 Query, Mutation를 Resolver에서 프로그래밍 한다.
 - schema에서 지정한 이름과 다르면 에러를 발생한다.
 
-```
+```javascript
 const resolvers = {
     Query: {
        ...
@@ -99,7 +99,7 @@ const resolvers = {
 [resolvers.js]
 
 ## 예제
-```
+```javascript
 import { GraphQLServer } from "graphql-yoga";
 import resolvers from "./graphql/resolvers";
 
@@ -112,7 +112,7 @@ server.start(() => console.log("Graphql Server Running"));
 
 ```
 [index.js]
-```
+```graphql
 //리턴 타입을 설정할 수 있다.
 type Movie {
   id: Int!
@@ -134,7 +134,7 @@ type Query {
 ```
 [schema.graphql]
 
-```
+```javascript
 const resolvers = {
     Query: {
         name: (_,args) => "test",
