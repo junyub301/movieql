@@ -58,12 +58,45 @@ yarn add babel-node babel-cli babel-preset-env babel-preset-stage-3
 - Mutation : 정보를 DB로 보내는것
 
 ```
-type Query {
- name: String!
+//리턴 타입을 설정할 수 있다.
+type Movie {
+   id :Int!
+   ...
 }
 
+type Query {
+//required => !를 붙인다.
+ name: String!
+ 
+ // Arguments가 필요할 경우 "쿼리명(파라미터:타입) : 리턴타입"으로 지정한다.
+ movie(id:Int!) : Movie
+ 
+ // 다수의 결과를 받아오려면 "쿼리명: [리턴타입]"으로 지정한다.
+ movies : [Moive]!
+}
+
+type Mutation{
+    ...
+}
 
 ```
+[schema.graphql]
+
+## resolver
+- schema에서 설명한 Query, Mutation를 Resolver에서 프로그래밍 한다.
+- schema에서 지정한 이름과 다르면 에러를 발생한다.
+
+```
+const resolvers = {
+    Query: {
+       ...
+    },
+    Mutation: {
+        ...
+    }
+}
+```
+[resolvers.js]
 
 ## 예제
 ```
@@ -78,4 +111,49 @@ const server = new GraphQLServer({
 server.start(() => console.log("Graphql Server Running"));
 
 ```
+[index.js]
+```
+//리턴 타입을 설정할 수 있다.
+type Movie {
+  id: Int!
+  title: String!
+  rating: Float!
+  summary: String!
+  language: String
+  medium_cover_image: String
+  genres: [String]
+  description_intro: String
+}
+
+type Query {
+ name: String!
+ movie(id:Int!) : Movie
+ movies : [Moive]!
+}
+
+```
+[schema.graphql]
+
+```
+const resolvers = {
+    Query: {
+        name: (_,args) => "test",
+        movie: async (_,{id}) => {
+          const {
+            data: {
+              data: { movie },
+            },
+          } = await axios(MOVIE_DETAILS_URL, {
+            params: {
+              movie_id: id,
+            },
+          });
+          return movie;
+        },
+        movies : () => {..}
+        movieData : () => {} // error : schema에 정의되지 않음
+    }
+}
+```
+[resolvers.js]
 
